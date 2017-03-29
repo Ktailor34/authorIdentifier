@@ -66,10 +66,10 @@ public class Driver {
 
 			while ((line = bufferedReader.readLine()) != null) {
 				line = line.replaceAll("[^a-zA-Z]", " ").toLowerCase();
-				System.out.println(line);
+				//System.out.println(line);
 
 				for (String word : line.split(" ")) {
-					authorList.add(word);
+					author1List.add(word);
 				}
 			}
 
@@ -79,8 +79,12 @@ public class Driver {
 			System.out.println("IO Exception");
 		}
 
-		test = findUnique(authorList);
+		System.out.println(authorList);
+		System.out.println(author1List);
+		test = compareCommon(authorList, author1List);
 		System.out.println(test);
+		System.out.println(findUnique(authorList));
+
 	}
 
 
@@ -92,7 +96,7 @@ public class Driver {
 			for (int k = 0; k <= list2.size() - 1; k++) {
 				if (list.get(i).equals(list2.get(k)) && !common.contains(list.get(k))) {
 
-					common.add(list.get(k));
+					common.add(list.get(i));
 				}
 			}
 		}
