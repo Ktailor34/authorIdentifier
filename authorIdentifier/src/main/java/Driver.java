@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -21,12 +22,13 @@ public class Driver {
 		boolean done1 = false;
 		ArrayList authorList = new ArrayList();
 		ArrayList author1List = new ArrayList();
-		//ArrayList Grace = new ArrayList();
-		//ArrayList Hannah = new ArrayList();
-		//Hannah.add("a");
-		//Grace.add("a");
-		//String[] Hannah = {"q", "w", "e", "e", "t", "y"};
-		//String[] Standard = {"q", "w", "e", "e", "t", "y"};
+
+		ArrayList size1 = findUnique(authorList);
+		int x = size1.size();
+		int[] test1 = new int [x];
+
+		ArrayList test2 = new ArrayList();
+
 		ArrayList unique = new ArrayList();
 
 
@@ -81,10 +83,11 @@ public class Driver {
 
 		System.out.println(authorList);
 		System.out.println(author1List);
-		test = compareCommon(authorList, author1List);
-		System.out.println(test);
-		System.out.println(findUnique(authorList));
-
+		//test = compareCommon(authorList, author1List);
+		//System.out.println(test);
+		//System.out.println(findUnique(authorList));
+		test1 = findFrequency(authorList);
+		System.out.print(Arrays.toString(test1));
 	}
 
 
@@ -117,6 +120,26 @@ public class Driver {
 			}
 		}
 		return unique;
+	}
+
+	public static int[] findFrequency (ArrayList list) {
+
+		ArrayList size = findUnique(list);
+		int x = size.size();
+		int [] frequency = new int[x];
+		ArrayList uniqueList = new ArrayList();
+
+		uniqueList = findUnique(list);
+
+		for (int i = 0; i <= uniqueList.size() - 1; i++) {
+			for(int k =0; k <= list.size() -1; k++){
+				if(uniqueList.get(i).equals(list.get(k))){
+					frequency[i] = frequency[i] + 1;
+				}
+			}
+		}
+		return frequency;
+
 
 	}
 
