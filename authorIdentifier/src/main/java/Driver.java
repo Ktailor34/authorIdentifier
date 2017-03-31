@@ -143,20 +143,24 @@ public class Driver {
 
 	}
 
-	public static ArrayList compareDifferentiatingWords(ArrayList list, ArrayList list2) {
-		//puts words into arraylist and finds the words that one list contains that the other doesn't
+	public static ArrayList compareDifferentiatingWords(ArrayList list, ArrayList list2)
+	{
+//puts words into arraylist and finds the words that one list contains that the other doesn't
 		ArrayList compareDifferentiatingWords = new ArrayList();
 
-		for (int i = 0; i <= list.size() - 1; i++) {
-			for (int k = 0; k <= list2.size() - 1; k++) {
-				if (!(list.get(i).equals(list2.get(k)))) {
-					//System.out.println("Added to list: " + list.get(k));
-					int difference = 1;
-				}
+		for(int i = 0; i <= list.size()-1; i++)
+		{
+			int difference = 0;
+			for(int k = 0; k <= list2.size()-1; k++)
+			{
+				if((list.get(i).equals(list2.get(k))))
+					difference = 1;
 			}//end of inner for loop
+			if(difference == 0 && !compareDifferentiatingWords.contains(list.get(i)))
+				compareDifferentiatingWords.add(list.get(i));
 		}//end of outer for loop
 
 		return compareDifferentiatingWords;
-	}
+	}//end of compareDifferentiatingWords
 }
 
