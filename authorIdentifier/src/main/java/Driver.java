@@ -1,10 +1,11 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
+		import java.util.ArrayList;
+		import java.util.Arrays;
+		import java.util.Scanner;
+		import java.io.BufferedReader;
+		import java.io.FileNotFoundException;
+		import java.io.FileReader;
+		import java.io.IOException;
 
 /**
  * Created by s738110 on 3/15/17.
@@ -39,7 +40,7 @@ public class Driver {
 
 			while ((line = bufferedReader.readLine()) != null) {
 				line = line.replaceAll("[^a-zA-Z]", " ").toLowerCase();
-				for (String word : line.split(" ")) {
+				for (String word : line.split("\\s+")) {
 					authorList.add(word);
 				}
 			}
@@ -70,7 +71,7 @@ public class Driver {
 				line = line.replaceAll("[^a-zA-Z]", " ").toLowerCase();
 				//System.out.println(line);
 
-				for (String word : line.split(" ")) {
+				for (String word : line.split("\\s+")) {
 					author1List.add(word);
 				}
 			}
@@ -81,13 +82,14 @@ public class Driver {
 			System.out.println("IO Exception");
 		}
 
+
 		System.out.println(authorList);
 		System.out.println(author1List);
 		//test = compareCommon(authorList, author1List);
 		//System.out.println(test);
 		//System.out.println(findUnique(authorList));
 		test1 = findFrequency(authorList);
-		System.out.print(Arrays.toString(test1));
+		//System.out.print(Arrays.toString(test1));
 	}
 
 
