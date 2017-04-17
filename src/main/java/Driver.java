@@ -17,9 +17,14 @@ import java.util.*;
 public class Driver {
 
 	public static void main(String args[]) {
-		Author poe = new Author("file1.txt");
-		Author kipling = new Author("file2.txt");
+		Author poe = new Author("File1.txt");
+		Author kipling = new Author("File2.txt");
+
+		System.out.println(kipling.getTotalWords());
+		System.out.println(poe.getFrequency());
+		System.out.println(compareDifferentiatingWords(poe, kipling));
 	}
+
 
 
 	public static Set compareCommon(Author a1, Author a2) {

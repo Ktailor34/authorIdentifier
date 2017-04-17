@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,6 +24,29 @@ public class Author {
 		wordsToFrequency(words);
 	}
 
+	public void readWords(String filePath){
+		String line;
+		words = new ArrayList<String>();
+
+		try {
+			File file = new File(getClass().getClassLoader().getResource(filePath).getFile());
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			while (( line = bufferedReader.readLine()) != null) {
+				line = line.replaceAll("[^a-zA-Z]", " ").toLowerCase();
+				for (String word : line.split("\\s+")) {
+					words.add(word);
+				}
+			}
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		} catch (IOException ex) {
+			System.out.println("IO Exception");
+		}
+	}
+
+
 	public void wordsToFrequency(ArrayList<String> words) {
 		frequency = new HashMap<String, Integer>();
 		for (int i = 0; i < words.size(); i++) {
@@ -44,6 +64,10 @@ public class Author {
 		return totalWords;
 	}
 
+	public HashMap<String, Integer> getFrequency() {
+		return frequency;
+	}
+
 	public int getVocabSize() {
 		return vocabSize;
 	}
@@ -56,24 +80,4 @@ public class Author {
 		return words;
 	}
 
-	public void readWords(String filePath){
-		String line;
-		words = new ArrayList<String>();
-
-		try {
-			FileReader fileReader = new FileReader(filePath);
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-			while (( line = bufferedReader.readLine()) != null) {
-				line = line.replaceAll("[^a-zA-Z]", " ").toLowerCase();
-				for (String word : line.split("\\s+")) {
-					words.add(word);
-				}
-			}
-		} catch (FileNotFoundException ex) {
-			System.out.println("File not found");
-		} catch (IOException ex) {
-			System.out.println("IO Exception");
-		}
-	}
 }
