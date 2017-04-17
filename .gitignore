@@ -1,0 +1,7 @@
+.DS_Store
+.project
+.idea
+*.iml
+*.eml
+.classpath
+*.userlibraries
