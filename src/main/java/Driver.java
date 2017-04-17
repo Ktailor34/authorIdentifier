@@ -33,29 +33,26 @@ public class Driver {
 		return vocab1;
 	}
 
-	public static ArrayList compareDifferentiatingWords(Author a1, Author a2)
-	{
+	public static ArrayList compareDifferentiatingWords(Author a1, Author a2) {
 	//puts words into arraylist and finds the words that one list contains that the other doesn't
 		ArrayList compareDifferentiatingWords = new ArrayList();
 		ArrayList author1 = new ArrayList(a1.getVocabulary());
 		ArrayList author2 = new ArrayList(a2.getVocabulary());
 
-		for(int i = 0; i <= author1.size()-1; i++)
-		{
+		for(int i = 0; i < author1.size(); i++) {
 			int difference = 0;
-			for(int k = 0; k <= author2.size()-1; k++)
-			{
-				if((author1.get(i).equals(author2.get(k))))
+			for(int k = 0; k < author2.size(); k++) {
+				if((author1.get(i).equals(author2.get(k)))) {
 					difference = 1;
+				}
 			}//end of inner for loop
-			if(difference == 0 && !compareDifferentiatingWords.contains(author1.get(i)))
+			if(difference == 0 && !compareDifferentiatingWords.contains(author1.get(i))) {
 				compareDifferentiatingWords.add(author1.get(i));
+			}
 		}//end of outer for loop
 
 		return compareDifferentiatingWords;
 	}//end of compareDifferentiatingWords
-
-
 
 }
 

@@ -12,14 +12,14 @@ import java.util.Set;
  */
 public class Author {
 
-	private ArrayList words;
+	private ArrayList<String> words;
 	private Set<String> vocabulary;
 	private int vocabSize;
 	private int totalWords;
-	HashMap frequency;
+	private HashMap<String, Integer> frequency;
 
 
-	public Author(String filePath){
+	public Author(String filePath) {
 		readWords(filePath);
 		vocabulary = new HashSet<String>(words);
 		vocabSize = vocabulary.size();
@@ -27,18 +27,15 @@ public class Author {
 		wordsToFrequency(words);
 	}
 
-	public void wordsToFrequency(ArrayList words){
+	public void wordsToFrequency(ArrayList<String> words) {
 		frequency = new HashMap<String, Integer>();
-		for (int i = 0; i < words.size(); i++){
-			for( int k = 0; k < vocabulary.size(); k++){
-				if(frequency.containsKey(words.get(i))){
-					int count = (int)frequency.get(words.get(i));
-					frequency.put(words.get(i), count + 1 );
-				}
-
-				if(!frequency.containsKey(words.get(i))){
-					frequency.put(words.get(i), 1);
-				}
+		for (int i = 0; i < words.size(); i++) {
+			if(frequency.containsKey(words.get(i))) {
+				int count = frequency.get(words.get(i));
+				frequency.put(words.get(i), count + 1 );
+			}
+			else {
+				frequency.put(words.get(i), 1);
 			}
 		}
 	}
@@ -61,7 +58,7 @@ public class Author {
 
 	public void readWords(String filePath){
 		String line;
-		words = new ArrayList();
+		words = new ArrayList<String>();
 
 		try {
 			FileReader fileReader = new FileReader(filePath);
