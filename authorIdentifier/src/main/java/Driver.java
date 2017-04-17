@@ -33,43 +33,30 @@ public class Driver {
 		return vocab1;
 	}
 
-	/*public static int[] findFrequency (ArrayList list) {
-
-		ArrayList size = findUnique(list);
-		int x = size.size();
-		int [] frequency = new int[x];
-		ArrayList uniqueList = new ArrayList();
-
-		uniqueList = findUnique(list);
-
-		for (int i = 0; i <= uniqueList.size() - 1; i++) {
-			for(int k =0; k <= list.size() -1; k++){
-				if(uniqueList.get(i).equals(list.get(k))){
-					frequency[i] = frequency[i] + 1;
-				}
-			}
-		}
-		return frequency;
-	}*/
-
-	public static ArrayList compareDifferentiatingWords(ArrayList list, ArrayList list2)
+	public static ArrayList compareDifferentiatingWords(Author a1, Author a2)
 	{
-//puts words into arraylist and finds the words that one list contains that the other doesn't
+	//puts words into arraylist and finds the words that one list contains that the other doesn't
 		ArrayList compareDifferentiatingWords = new ArrayList();
+		ArrayList author1 = new ArrayList(a1.getVocabulary());
+		ArrayList author2 = new ArrayList(a2.getVocabulary());
 
-		for(int i = 0; i <= list.size()-1; i++)
+		for(int i = 0; i <= author1.size()-1; i++)
 		{
 			int difference = 0;
-			for(int k = 0; k <= list2.size()-1; k++)
+			for(int k = 0; k <= author2.size()-1; k++)
 			{
-				if((list.get(i).equals(list2.get(k))))
+				if((author1.get(i).equals(author2.get(k))))
 					difference = 1;
 			}//end of inner for loop
-			if(difference == 0 && !compareDifferentiatingWords.contains(list.get(i)))
-				compareDifferentiatingWords.add(list.get(i));
+			if(difference == 0 && !compareDifferentiatingWords.contains(author1.get(i)))
+				compareDifferentiatingWords.add(author1.get(i));
 		}//end of outer for loop
 
 		return compareDifferentiatingWords;
 	}//end of compareDifferentiatingWords
+
+
+
 }
+
 
