@@ -24,15 +24,17 @@ public class Driver {
 		Set<String> test1;
 
 		Author poe = new Author("File1.txt");
-		Author kipling = new Author("File2.txt");
+		Author kipling = new Author("testFile");
 
 		//System.out.println(kipling.getTotalWords());
 		//System.out.println(poe.getFrequency());
 		test1 = compareCommon(poe, kipling);
 		ArrayList<String> test2 = new ArrayList<String>(test1);
-		System.out.println(test2);
 		System.out.println(poe.getWords());
 		System.out.println(kipling.getWords());
+		System.out.println(compareCommon(poe, kipling));
+		System.out.println(compareDifferentiatingWords(poe, kipling));
+		System.out.println(compareDifferentiatingWords(kipling, poe));
 		System.out.println(findFrequency(poe.getWords(), test2));
 
 	}
