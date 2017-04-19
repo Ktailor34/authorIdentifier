@@ -16,6 +16,8 @@ public class Author {
 	private HashMap<String, Integer> frequency;
 
 
+
+
 	public Author(String filePath) {
 		readWords(filePath);
 		vocabulary = new HashSet<String>(words);
@@ -77,6 +79,10 @@ public class Author {
 	}
 
 	public ArrayList getAuthor1Words() {
+		return words;
+	}
+
+	public ArrayList<String> getWords() {
 		return words;
 	}
 

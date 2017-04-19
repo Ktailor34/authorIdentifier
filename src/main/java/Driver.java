@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -15,17 +16,26 @@ import java.util.*;
  */
 
 public class Driver {
+	private static HashMap<String, Integer> frequency1;
 
 	public static void main(String args[]) {
+
+		ArrayList<String> test = new ArrayList();
+		Set<String> test1;
+
 		Author poe = new Author("File1.txt");
 		Author kipling = new Author("File2.txt");
 
-		System.out.println(kipling.getTotalWords());
-		System.out.println(poe.getFrequency());
-		System.out.println(compareDifferentiatingWords(poe, kipling));
+		//System.out.println(kipling.getTotalWords());
+		//System.out.println(poe.getFrequency());
+		test1 = compareCommon(poe, kipling);
+		ArrayList<String> test2 = new ArrayList<String>(test1);
+		System.out.println(test2);
+		System.out.println(poe.getWords());
+		System.out.println(kipling.getWords());
+		System.out.println(findFrequency(poe.getWords(), test2));
+
 	}
-
-
 
 	public static Set compareCommon(Author a1, Author a2) {
 
@@ -58,6 +68,24 @@ public class Driver {
 
 		return compareDifferentiatingWords;
 	}//end of compareDifferentiatingWords
+
+	public static HashMap<String, Integer> findFrequency(ArrayList<String> words, ArrayList<String> comparison) {
+		frequency1 = new HashMap<String, Integer>();
+		for (int i = 0; i < comparison.size(); i++) {
+			for(int k =0; k < words.size(); k++) {
+				if (frequency1.containsKey(comparison.get(i))) {
+					if(comparison.get(i).equals(words.get(k))) {
+						int count = frequency1.get(comparison.get(i));
+						frequency1.put(comparison.get(i), count + 1);
+					}
+				}
+				else {
+					frequency1.put(comparison.get(i), 1);
+				}
+			}
+		}
+		return frequency1;
+	}
 
 }
 
