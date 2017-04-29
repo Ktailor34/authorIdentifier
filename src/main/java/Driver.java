@@ -20,22 +20,11 @@ public class Driver {
 
 	public static void main(String args[]) {
 
-		ArrayList<String> test = new ArrayList();
-		Set<String> test1;
-
 		Author poe = new Author("File1.txt");
 		Author kipling = new Author("testFile");
 
-		//System.out.println(kipling.getTotalWords());
-		//System.out.println(poe.getFrequency());
-		test1 = compareCommon(poe, kipling);
-		ArrayList<String> test2 = new ArrayList<String>(test1);
 		System.out.println(poe.getWords());
 		System.out.println(kipling.getWords());
-		System.out.println(compareCommon(poe, kipling));
-		System.out.println(compareDifferentiatingWords(poe, kipling));
-		System.out.println(compareDifferentiatingWords(kipling, poe));
-		System.out.println(findFrequency(poe.getWords(), test2));
 
 	}
 
@@ -73,16 +62,20 @@ public class Driver {
 
 	public static HashMap<String, Integer> findFrequency(ArrayList<String> words, ArrayList<String> comparison) {
 		frequency1 = new HashMap<String, Integer>();
-		for (int i = 0; i < comparison.size(); i++) {
-			for(int k =0; k < words.size(); k++) {
-				if (frequency1.containsKey(comparison.get(i))) {
-					if(comparison.get(i).equals(words.get(k))) {
-						int count = frequency1.get(comparison.get(i));
-						frequency1.put(comparison.get(i), count + 1);
-					}
-				}
-				else {
-					frequency1.put(comparison.get(i), 1);
+		Set<String> set = new HashSet<String>(comparison);
+		Set<String> set1 = new HashSet<String>(words);
+		set.retainAll(set1);
+		ArrayList<String> comparison1 = new ArrayList<String>(set);
+
+		for (int a = 0; a < comparison1.size(); a++){
+			frequency1.put(comparison1.get(a), 0);
+		}
+
+		for (int i = 0; i < words.size(); i++) {
+			for(int k =0; k < comparison1.size(); k++) {
+					if(words.get(i).equals(comparison1.get(k))) {
+						int count = frequency1.get(comparison1.get(k));
+						frequency1.put(comparison1.get(k), count + 1);
 				}
 			}
 		}

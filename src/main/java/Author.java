@@ -49,17 +49,22 @@ public class Author {
 	}
 
 
-	public void wordsToFrequency(ArrayList<String> words) {
+	public String wordsToFrequency(ArrayList<String> words) {
 		frequency = new HashMap<String, Integer>();
+		int max = 0;
+		String fav = null;
 		for (int i = 0; i < words.size(); i++) {
-			if(frequency.containsKey(words.get(i))) {
+			if (frequency.containsKey(words.get(i))) {
 				int count = frequency.get(words.get(i));
-				frequency.put(words.get(i), count + 1 );
-			}
-			else {
+				frequency.put(words.get(i), count + 1);
+				if (count > max) {
+					fav = words.get(i);
+				}
+			} else {
 				frequency.put(words.get(i), 1);
 			}
 		}
+		return fav;
 	}
 
 	public int getTotalWords() {
