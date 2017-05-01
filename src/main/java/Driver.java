@@ -27,16 +27,21 @@ public class Driver {
 		System.out.println(poe.getWords());
 		System.out.println(kipling.getWords());
 
-		double amountUnique, middle, commonWords, total = 0, totalFrequency;
+		double amountUnique = 0, middle, commonWords, total = 0, totalFrequency;
 		boolean fav = false;
 		ArrayList<Integer> commonFrequency = new ArrayList<Integer>();
 		Set<String> common;
 		HashMap<String, Integer> commonWordFrequency1, commonWordFrequency2;
 
 		//Unique Words Percent Error
-		amountUnique = (poe.getVocabulary().size() - kipling.getVocabulary().size());
-		middle = (poe.getVocabulary().size() + kipling.getVocabulary().size());
-		amountUnique = Math.abs(amountUnique/middle);
+		if(poe.getVocabSize() > kipling.getVocabSize()) {
+			amountUnique = (poe.getVocabSize()-kipling.getVocabSize())/poe.getVocabSize();
+		}
+
+		if(kipling.getVocabSize() > poe.getVocabSize()) {
+			amountUnique = (poe.getVocabSize()-kipling.getVocabSize())/poe.getVocabSize();
+		}
+			amountUnique = Math.abs(amountUnique);
 
 		//Common Words Percent Error
 		common = compareCommon(poe, kipling);
@@ -76,7 +81,8 @@ public class Driver {
 		totalFrequency = total / commonFrequency.size();
 		System.out.println(totalFrequency);
 		System.out.println(fav);
-		System.out.println(totalFrequency);
+		System.out.println(commonWords);
+		System.out.println(amountUnique);
 	}
 
 	public static Set compareCommon(Author a1, Author a2) {
