@@ -33,6 +33,24 @@ public class Driver {
 		Set<String> common;
 		HashMap<String, Integer> commonWordFrequency1, commonWordFrequency2;
 
+		System.out.println("Poe's Words: " + poe.getWords());
+		System.out.println("Kipling's Words: " + kipling.getWords());
+		System.out.println("Poe and Kipling both used: " + compareCommon(poe, kipling));
+		System.out.println("Poe's words that Kipling didn't use: " + compareDifferentiatingWords(poe, kipling));
+		System.out.println("Kipling's words that Poe didn't use: " + compareDifferentiatingWords(kipling, poe));
+		System.out.println("Find's frequency of Poe's words: " + findFrequency(poe.getWords(), poe.getWords()));
+		System.out.println("Find's frequency of Kipling's words: " + findFrequency(kipling.getWords(), kipling.getWords()));
+		System.out.println("Total amount of Poe's words: " + poe.getTotalWords());
+		System.out.println("Total amount of Kipling's words: " + kipling.getTotalWords());
+		System.out.println("Total amount of unique words used by Poe: " + poe.getVocabSize());
+		System.out.println("Total amount of unique words used by Kipling: "+ kipling.getVocabSize());
+		System.out.println("Poe's unique words: " + poe.getVocabulary());
+		System.out.println("Kipling's unique words: " + kipling.getVocabulary());
+		System.out.println("Get's frequency of Poe's words: " + poe.getFrequency());
+		System.out.println("Get's frequency of Kipling's words: " + kipling.getFrequency());
+		System.out.println("Poe's favorite word: " + poe.wordsToFrequency(poe.getWords()));
+		System.out.println("Kipling's favorite word: " + kipling.wordsToFrequency(kipling.getWords()));
+
 		//Unique Words Percent Error
 		if(poe.getVocabSize() > kipling.getVocabSize()) {
 			amountUnique = (poe.getVocabSize()-kipling.getVocabSize())/poe.getVocabSize();
