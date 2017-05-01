@@ -11,8 +11,8 @@ public class Author {
 
 	private ArrayList<String> words;
 	private Set<String> vocabulary;
-	private int vocabSize;
-	private int totalWords;
+	private double vocabSize;
+	private double totalWords;
 	private HashMap<String, Integer> frequency;
 
 
@@ -67,7 +67,7 @@ public class Author {
 		return fav;
 	}
 
-	public int getTotalWords() {
+	public double getTotalWords() {
 		return totalWords;
 	}
 
@@ -75,7 +75,7 @@ public class Author {
 		return frequency;
 	}
 
-	public int getVocabSize() {
+	public double getVocabSize() {
 		return vocabSize;
 	}
 

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.lang.Math;
 
 /**
  * Polymorphism:
@@ -26,6 +27,56 @@ public class Driver {
 		System.out.println(poe.getWords());
 		System.out.println(kipling.getWords());
 
+		double amountUnique, middle, commonWords, total = 0, totalFrequency;
+		boolean fav = false;
+		ArrayList<Integer> commonFrequency = new ArrayList<Integer>();
+		Set<String> common;
+		HashMap<String, Integer> commonWordFrequency1, commonWordFrequency2;
+
+		//Unique Words Percent Error
+		amountUnique = (poe.getVocabulary().size() - kipling.getVocabulary().size());
+		middle = (poe.getVocabulary().size() + kipling.getVocabulary().size());
+		amountUnique = Math.abs(amountUnique/middle);
+
+		//Common Words Percent Error
+		common = compareCommon(poe, kipling);
+		commonWords = common.size();
+		if(poe.getVocabSize() > kipling.getVocabSize()) {
+			commonWords = (Math.abs(poe.getVocabSize()-commonWords))/poe.getVocabSize();
+		}
+		if(kipling.getVocabSize() > poe.getVocabSize()) {
+			commonWords = (Math.abs(kipling.getVocabSize()-commonWords))/kipling.getVocabSize();
+		}
+
+		//Favorite Word
+		if(poe.wordsToFrequency(poe.getWords()).equals(kipling.wordsToFrequency(kipling.getWords()))) {
+			fav = true;
+		}
+
+		//comparing common word frequencies
+		ArrayList<String> commonList = new ArrayList<String>(common);
+		commonWordFrequency1 = findFrequency(poe.getWords(),commonList);
+		commonWordFrequency2 = findFrequency(kipling.getWords(),commonList);
+		for(int y = 0; y < commonList.size(); y++) {
+			int one = commonWordFrequency1.get(commonList.get(y));
+			int two = commonWordFrequency2.get(commonList.get(y));
+
+			if (one > two) {
+				commonFrequency.add(Math.abs((one - two)) / one);
+			}
+
+			if (two >= one) {
+				commonFrequency.add(Math.abs((two - one)) / two);
+			}
+		}
+		for (int u = 0; u < commonFrequency.size(); u++) {
+			total = commonFrequency.get(u) + total;
+		}
+
+		totalFrequency = total / commonFrequency.size();
+		System.out.println(totalFrequency);
+		System.out.println(fav);
+		System.out.println(totalFrequency);
 	}
 
 	public static Set compareCommon(Author a1, Author a2) {
