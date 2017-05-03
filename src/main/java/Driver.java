@@ -29,7 +29,7 @@ public class Driver {
 
 		double amountUnique = 0, middle, commonWords, total = 0, totalFrequency;
 		boolean fav = false;
-		ArrayList<Integer> commonFrequency = new ArrayList<Integer>();
+		ArrayList<Double> commonFrequency = new ArrayList<Double>();
 		Set<String> common;
 		HashMap<String, Integer> commonWordFrequency1, commonWordFrequency2;
 
@@ -57,11 +57,11 @@ public class Driver {
 		}
 
 		if(kipling.getVocabSize() > poe.getVocabSize()) {
-			amountUnique = (poe.getVocabSize()-kipling.getVocabSize())/poe.getVocabSize();
+			amountUnique = (kipling.getVocabSize()-poe.getVocabSize())/kipling.getVocabSize();
 		}
 			amountUnique = Math.abs(amountUnique);
 
-		//Common Words Percent Error
+		//percent of words that are not common
 		common = compareCommon(poe, kipling);
 		commonWords = common.size();
 		if(poe.getVocabSize() > kipling.getVocabSize()) {
@@ -81,15 +81,15 @@ public class Driver {
 		commonWordFrequency1 = findFrequency(poe.getWords(),commonList);
 		commonWordFrequency2 = findFrequency(kipling.getWords(),commonList);
 		for(int y = 0; y < commonList.size(); y++) {
-			int one = commonWordFrequency1.get(commonList.get(y));
-			int two = commonWordFrequency2.get(commonList.get(y));
+			double one = commonWordFrequency1.get(commonList.get(y));
+			double two = commonWordFrequency2.get(commonList.get(y));
 
 			if (one > two) {
-				commonFrequency.add(Math.abs((one - two)) / one);
+				commonFrequency.add(((one - two)) / one);
 			}
 
 			if (two >= one) {
-				commonFrequency.add(Math.abs((two - one)) / two);
+				commonFrequency.add(((two - one)) / two);
 			}
 		}
 		for (int u = 0; u < commonFrequency.size(); u++) {
@@ -97,10 +97,11 @@ public class Driver {
 		}
 
 		totalFrequency = total / commonFrequency.size();
-		System.out.println(totalFrequency);
-		System.out.println(fav);
-		System.out.println(commonWords);
-		System.out.println(amountUnique);
+		System.out.println("What is the percent error between the frequencies of the common words? " + totalFrequency);
+		System.out.println("Do the favorite words match? " + fav);
+		//System.out.println("What percent of the words are not common " + commonWords);
+		System.out.println("The amount of percent error between the amount of unique words used is " + amountUnique);
+		System.out.println("The amount of words in common is " + commonList.size());
 	}
 
 	public static Set compareCommon(Author a1, Author a2) {

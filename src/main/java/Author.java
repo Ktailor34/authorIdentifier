@@ -52,6 +52,7 @@ public class Author {
 	public String wordsToFrequency(ArrayList<String> words) {
 		frequency = new HashMap<String, Integer>();
 		int max = 0;
+
 		String fav = null;
 		for (int i = 0; i < words.size(); i++) {
 			if (frequency.containsKey(words.get(i))) {
