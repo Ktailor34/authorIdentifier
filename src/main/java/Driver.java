@@ -99,7 +99,7 @@ public class Driver {
 		totalFrequency = total / commonFrequency.size();
 		System.out.println("What is the percent error between the frequencies of the common words? " + totalFrequency);
 		System.out.println("Do the favorite words match? " + fav);
-		//System.out.println("What percent of the words are not common " + commonWords);
+		System.out.println("What percent of the words were not common between both authors " + commonWords);
 		System.out.println("The amount of percent error between the amount of unique words used is " + amountUnique);
 		System.out.println("The amount of words in common is " + commonList.size());
 	}
