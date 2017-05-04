@@ -58,7 +58,7 @@ public class Author {
 			if (frequency.containsKey(words.get(i))) {
 				int count = frequency.get(words.get(i));
 				frequency.put(words.get(i), count + 1);
-				if (count > max) {
+				if (count > max && !words.get(i).equals("")) {
 					fav = words.get(i);
 				}
 			} else {

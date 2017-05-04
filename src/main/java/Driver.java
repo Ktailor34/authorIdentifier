@@ -22,67 +22,70 @@ public class Driver {
 	public static void main(String args[]) {
 
 		Author poe = new Author("File1.txt");
-		Author kipling = new Author("testFile");
+		Author kipling = new Author("File2.txt");
+		Author unknown = new Author("Unknown1");
 
 		System.out.println(poe.getWords());
 		System.out.println(kipling.getWords());
 
-		double amountUnique = 0, middle, commonWords, total = 0, totalFrequency;
+		compiler(poe, unknown);
+
+	}
+	public static void compiler(Author author1, Author author2) {
+
+		double amountUnique = 0, commonWords, total = 0, totalFrequency;
 		boolean fav = false;
 		ArrayList<Double> commonFrequency = new ArrayList<Double>();
 		Set<String> common;
 		HashMap<String, Integer> commonWordFrequency1, commonWordFrequency2;
 
-		System.out.println("Poe's Words: " + poe.getWords());
-		System.out.println("Kipling's Words: " + kipling.getWords());
-		System.out.println("Poe and Kipling both used: " + compareCommon(poe, kipling));
-		System.out.println("Poe's words that Kipling didn't use: " + compareDifferentiatingWords(poe, kipling));
-		System.out.println("Kipling's words that Poe didn't use: " + compareDifferentiatingWords(kipling, poe));
-		System.out.println("Find's frequency of Poe's words: " + findFrequency(poe.getWords(), poe.getWords()));
-		System.out.println("Find's frequency of Kipling's words: " + findFrequency(kipling.getWords(), kipling.getWords()));
-		System.out.println("Total amount of Poe's words: " + poe.getTotalWords());
-		System.out.println("Total amount of Kipling's words: " + kipling.getTotalWords());
-		System.out.println("Total amount of unique words used by Poe: " + poe.getVocabSize());
-		System.out.println("Total amount of unique words used by Kipling: "+ kipling.getVocabSize());
-		System.out.println("Poe's unique words: " + poe.getVocabulary());
-		System.out.println("Kipling's unique words: " + kipling.getVocabulary());
-		System.out.println("Get's frequency of Poe's words: " + poe.getFrequency());
-		System.out.println("Get's frequency of Kipling's words: " + kipling.getFrequency());
-		System.out.println("Poe's favorite word: " + poe.wordsToFrequency(poe.getWords()));
-		System.out.println("Kipling's favorite word: " + kipling.wordsToFrequency(kipling.getWords()));
+		System.out.println("author1's Words: " + author1.getWords());
+		System.out.println("author2's Words: " + author2.getWords());
+		System.out.println("author1 and author2 both used: " + compareCommon(author1, author2));
+		System.out.println("author1's words that author2 didn't use: " + compareDifferentiatingWords(author1, author2));
+		System.out.println("author2's words that author1 didn't use: " + compareDifferentiatingWords(author2, author1));
+		System.out.println("Find's frequency of author1's words: " + findFrequency(author1.getWords(), author1.getWords()));
+		System.out.println("Find's frequency of author2's words: " + findFrequency(author2.getWords(), author2.getWords()));
+		System.out.println("Total amount of author1's words: " + author1.getTotalWords());
+		System.out.println("Total amount of author2's words: " + author2.getTotalWords());
+		System.out.println("Total amount of unique words used by author1: " + author1.getVocabSize());
+		System.out.println("Total amount of unique words used by author2: "+ author2.getVocabSize());
+		System.out.println("author1's unique words: " + author1.getVocabulary());
+		System.out.println("author2's unique words: " + author2.getVocabulary());
+		System.out.println("Get's frequency of author1's words: " + author1.getFrequency());
+		System.out.println("Get's frequency of author2's words: " + author2.getFrequency());
+		System.out.println("author1's favorite word: " + author1.wordsToFrequency(author1.getWords()));
+		System.out.println("author2's favorite word: " + author2.wordsToFrequency(author2.getWords()));
 
 		//Unique Words Percent Error
-		if(poe.getVocabSize() > kipling.getVocabSize()) {
-			amountUnique = (poe.getVocabSize()-kipling.getVocabSize())/poe.getVocabSize();
+		if(author1.getVocabSize() > author2.getVocabSize()) {
+			amountUnique = (author1.getVocabSize()-author2.getVocabSize())/author1.getVocabSize();
 		}
 
-		if(kipling.getVocabSize() > poe.getVocabSize()) {
-			amountUnique = (kipling.getVocabSize()-poe.getVocabSize())/kipling.getVocabSize();
+		if(author2.getVocabSize() > author1.getVocabSize()) {
+			amountUnique = (author2.getVocabSize()-author1.getVocabSize())/author2.getVocabSize();
 		}
-			amountUnique = Math.abs(amountUnique);
+		amountUnique = Math.abs(amountUnique);
 
 		//percent of words that are not common
-		common = compareCommon(poe, kipling);
+		common = compareCommon(author1, author2);
 		commonWords = common.size();
-		if(poe.getVocabSize() > kipling.getVocabSize()) {
-			commonWords = (Math.abs(poe.getVocabSize()-commonWords))/poe.getVocabSize();
-		}
-		if(kipling.getVocabSize() > poe.getVocabSize()) {
-			commonWords = (Math.abs(kipling.getVocabSize()-commonWords))/kipling.getVocabSize();
-		}
+
+		commonWords = (Math.max(author1.getVocabSize(), author2.getVocabSize()) - commonWords) /((author1.getVocabSize() + author2.getVocabSize())-commonWords);
 
 		//Favorite Word
-		if(poe.wordsToFrequency(poe.getWords()).equals(kipling.wordsToFrequency(kipling.getWords()))) {
+		if(author1.wordsToFrequency(author1.getWords()).equals(author2.wordsToFrequency(author2.getWords()))) {
 			fav = true;
+
 		}
 
 		//comparing common word frequencies
 		ArrayList<String> commonList = new ArrayList<String>(common);
-		commonWordFrequency1 = findFrequency(poe.getWords(),commonList);
-		commonWordFrequency2 = findFrequency(kipling.getWords(),commonList);
+		commonWordFrequency1 = findFrequency(author1.getWords(),commonList);
+		commonWordFrequency2 = findFrequency(author2.getWords(),commonList);
 		for(int y = 0; y < commonList.size(); y++) {
-			double one = commonWordFrequency1.get(commonList.get(y));
-			double two = commonWordFrequency2.get(commonList.get(y));
+			double one = commonWordFrequency1.get(commonList.get(y)) / author1.getTotalWords();
+			double two = commonWordFrequency2.get(commonList.get(y)) / author2.getTotalWords();
 
 			if (one > two) {
 				commonFrequency.add(((one - two)) / one);
@@ -92,16 +95,24 @@ public class Driver {
 				commonFrequency.add(((two - one)) / two);
 			}
 		}
+
 		for (int u = 0; u < commonFrequency.size(); u++) {
 			total = commonFrequency.get(u) + total;
 		}
-
 		totalFrequency = total / commonFrequency.size();
+
 		System.out.println("What is the percent error between the frequencies of the common words? " + totalFrequency);
 		System.out.println("Do the favorite words match? " + fav);
-		System.out.println("What percent of the words were not common between both authors " + commonWords);
+		System.out.println("What percent of the words were not common between both authors " + commonWords); //commonwords / unique
 		System.out.println("The amount of percent error between the amount of unique words used is " + amountUnique);
 		System.out.println("The amount of words in common is " + commonList.size());
+
+		if (fav == true) {
+			System.out.println((totalFrequency*(1.20)+commonWords*(1.20)+amountUnique)/6);
+		}
+		if (fav == false) {
+			System.out.println((totalFrequency*(1.20)+commonWords*(1.20)+amountUnique)/3);
+		}
 	}
 
 	public static Set compareCommon(Author a1, Author a2) {
